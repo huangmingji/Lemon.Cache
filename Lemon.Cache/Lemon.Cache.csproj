@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Lemon</Company>
+    <Authors>huangmingji</Authors>
+    <Description>Lemon dotnet core缓存扩展</Description>
   </PropertyGroup>
 
 
