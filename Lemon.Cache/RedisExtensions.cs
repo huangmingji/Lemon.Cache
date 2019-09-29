@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 
 namespace Lemon.Cache
 {
@@ -25,10 +21,10 @@ namespace Lemon.Cache
             var connections = configuration.GetSection("RedisConfig:RedisConnections").Value.Split(',').ToList();
             string instanceName = configuration.GetSection("RedisConfig:InstanceName").Value;
             string password = configuration.GetSection("RedisConfig:Password").Value;
-            int asyncTimeout = Int32.Parse(configuration.GetSection("RedisConfig:AsyncTimeout").Value);
-            int syncTimeout = Int32.Parse(configuration.GetSection("RedisConfig:SyncTimeout").Value);
-            int connectTimeout = Int32.Parse(configuration.GetSection("RedisConfig:ConnectTimeout").Value);
-            int defaultDatabase = Int32.Parse(configuration.GetSection("RedisConfig:DefaultDatabase").Value);
+            int asyncTimeout = Int32.Parse(configuration.GetSection("RedisConfig:AsyncTimeout")?.Value??"5000");
+            int syncTimeout = Int32.Parse(configuration.GetSection("RedisConfig:SyncTimeout")?.Value??"5000");
+            int connectTimeout = Int32.Parse(configuration.GetSection("RedisConfig:ConnectTimeout")?.Value??"5000");
+            int defaultDatabase = Int32.Parse(configuration.GetSection("RedisConfig:DefaultDatabase")?.Value??"1");
 
             connections.RemoveAll(x => string.IsNullOrWhiteSpace(x));
 
